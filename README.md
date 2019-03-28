@@ -23,8 +23,6 @@
 ```
 ### 12 Определите функцию, заменяющую в исходном списке два подряд идущих одинаковых элемента одним.
 ```lisp
-
-
 (defun repl (arr res)
     (cond
         ( (null (cdr arr)) (cons (car arr) res))
@@ -36,4 +34,30 @@
 (print (repl '(1 2 3 4 4 500 6 7 8 9) NIL)) ;(1 2 3 4 500 6 7 8 9)
 (print (repl '(1 2 6 7 8 9) NIL)) ;(1 2 3 4 500 6 7 8 9)
 (print (repl '(1 2 3 4 4 500 500 6 7 7 8 9) NIL)) ;(1 2 3 4 500 6 7 8 9)
+```
+### 13 Определите функцию, удаляющую в исходном списке все повторные вхожде-ния элементов
+```lisp
+(defun del-dup (lst &optional (r nil))
+  (cond ((null lst) (reverse r))
+        ((member (car lst) r) (del-dup (cdr lst) r))
+        (t (del-dup (cdr lst) (cons (car lst) r))))) 
+ 
+(print (del-dup '(1 2 3 1 2 2 a a 3)))
+```
+### 26 Определите функцию, разбивающую список(a b с d...)на пары((а b) (сd)...)
+```lisp
+(defun mkpair (lst)
+  (cond ((null lst) nil)
+        ((= (length lst) 1) (list lst))
+        (t (cons (list (car lst) (cadr lst)) (mkpair (cddr lst)))))) 
+ 
+(print (mkpair '(a b c d e)))
+
+```
+### 28 Определите функцию, вычисляющую, сколько всего атомов в списке (списоч-ной структуре)
+```lisp
+(defun atom-counter (lst)
+  (length (remove-if-not #'atom lst)))
+ 
+(print (atom-counter '(1 2 3 (1 2) (3 4) 5)))
 ```
