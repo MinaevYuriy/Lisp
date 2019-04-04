@@ -42,7 +42,7 @@
         ((member (car lst) r) (del-dup (cdr lst) r))
         (t (del-dup (cdr lst) (cons (car lst) r))))) 
  
-(print (del-dup '(1 2 3 1 2 2 a a 3)))
+(print (del-dup '(1 2 3 1 2 2 a a 3))) ;(1 2 3 A) 
 ```
 ### |26| Определите функцию, разбивающую список(a b с d...)на пары((а b) (сd)...)
 ```lisp
@@ -51,7 +51,7 @@
         ((= (length lst) 1) (list lst))
         (t (cons (list (car lst) (cadr lst)) (mkpair (cddr lst)))))) 
  
-(print (mkpair '(a b c d e)))
+(print (mkpair '(a b c d e))) ;((A B) (C D) (E))
 
 ```
 ### |28| Определите функцию, вычисляющую, сколько всего атомов в списке (списоч-ной структуре)
@@ -59,5 +59,5 @@
 (defun atom-counter (lst)
   (length (remove-if-not #'atom lst)))
  
-(print (atom-counter '(1 2 3 (1 2) (3 4) 5)))
+(print (atom-counter '(1 2 3 (1 2) (3 4) 5))) ;4
 ```
